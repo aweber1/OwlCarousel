@@ -57,7 +57,14 @@ if (typeof Object.create !== "function") {
             if (typeof base.options.jsonPath === "string") {
                 url = base.options.jsonPath;
                 $.getJSON(url, getData);
-            } else {
+            } 
+            else if (typeof base.options.jsonData === "string") {
+                var jsonObject = $.parseJSON(base.options.jsonData);
+                if (jsonObject !== null){
+                    getData(jsonObject);
+                }
+            }
+            else {
                 base.logIn();
             }
         },
@@ -1494,6 +1501,7 @@ if (typeof Object.create !== "function") {
 
         autoHeight : false,
 
+        jsonData : false,
         jsonPath : false,
         jsonSuccess : false,
 
